@@ -10,12 +10,6 @@ var search = function(nums, target) {
   }
   let start = 0;
   let end = nums.length - 1;
-  if (nums[start] === target) {
-    return start;
-  }
-  if (nums[end] === target) {
-    return end;
-  }
   while (start + 1 < end) {
     mid = Math.floor(start + (end - start)/2);
     if(nums[mid] === target) {
@@ -35,11 +29,11 @@ var search = function(nums, target) {
       }
     }
   }
-  if (nums[start] === target) {
-    return start;
+  if (nums[0] === target) {
+    return 0;
   }
-  if (nums[end] === target) {
-    return end;
+  if (nums[nums.length-1] === target) {
+    return nums.length-1;
   }
   return -1;
 };
