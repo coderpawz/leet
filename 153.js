@@ -2,7 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
-var findMin = function(nums, minSoFar) {
+/*var findMin = function(nums, minSoFar) {
     'use strict';
     const size = nums.length;
     minSoFar = typeof minSoFar === 'undefined' ? Infinity : minSoFar;
@@ -28,7 +28,34 @@ var findMin = function(nums, minSoFar) {
     } else  {
         return Math.min(left[0], right[0], minSoFar);
     }
-};
+};*/
+function findMin(nums) {
+    if (nums === null || nums.length === 0) {
+        return -1;
+    }
+
+    let start = 0;
+    let end = nums.length - 1;
+    while (start + 1 < end) {
+        const mid = start + Math.floor((end - start) / 2);
+        if (nums[mid] === nums[end]) {
+            // if mid equals to end, that means it's fine to remove end
+            // the smallest element won't be removed
+            end--;
+        } else if (nums[mid] < nums[end]) {
+            end = mid;
+            // of course you can merge == & <
+        } else {
+            start = mid;
+            // or start = mid + 1
+        }
+    }
+
+    if (nums[start] <= nums[end]) {
+        return nums[start];
+    }
+    return nums[end];
+}
 
 console.log('[1,1]');
 console.log('actual:   ' + findMin([1,1]) + '\nexpected: 1');
