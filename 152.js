@@ -2,7 +2,30 @@
  * @param {number[]} nums
  * @return {number}
  */
-var maxProduct = function(ns) {
+var maxProduct = function(arr) {
+    let max_ending_here = arr[0];
+    let min_ending_here = arr[0];
+    let max_so_far = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i] > 0) {
+        max_ending_here = Math.max(max_ending_here * arr[i], arr[i]);
+        min_ending_here = Math.min(min_ending_here * arr[i], arr[i]);
+      } else if (arr[i] === 0) {
+        max_ending_here = 0;//Math.max(max_ending_here, 0);
+        min_ending_here = 0;//Math.min(min_ending_here, 0);
+      } else {
+        temp = max_ending_here;
+        max_ending_here = Math.max(min_ending_here * arr[i], arr[i]);
+        min_ending_here = Math.min(temp * arr[i], arr[i]);
+      }
+      if (max_so_far <  max_ending_here) {
+        max_so_far = max_ending_here;
+      }
+    }
+    return max_so_far;
+};
+
+var maxProductDP = function(ns) {
   const dedupe = (a, n, k, c) =>
       a.length && a[a.length - 1] === k && n === k ?
         (c ? a.slice(0, -1) : a) : (a[a.length]=n, a);
@@ -42,6 +65,7 @@ console.log(maxProduct([2]), 2);
 console.log(maxProduct([0,0,0,0,0, -2, 0,0]), 0);
 console.log(maxProduct([0, 2]), 2);
 console.log(maxProduct([-1, -1]), 1);
+console.log(maxProduct([-1]), -1);
 console.log(maxProduct([1, 1]), 1);
 console.log(maxProduct([0, 0]), 0);
 console.log(maxProduct([2,4]), 8);
