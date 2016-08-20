@@ -3,6 +3,21 @@
  * @return {number[]}
  */
 const grayCode = function(n) {
+    const arr = [0];
+    for(let i = 0; i < n; i++) {
+        let inc = 1 << i;
+        for(let j = arr.length - 1; j >= 0; j--) {
+            arr[arr.length] = arr[j] + inc;
+        }
+    }
+    return arr;
+}
+
+/**
+ * @param {number} n
+ * @return {number[]}
+ */
+const grayCodeOG = function(n) {
   if (n === 0) {
     return [0];
   }
@@ -69,6 +84,11 @@ console.log();
 console.log(grayCode(5).join(' '));
 console.log([0,1,3,2, 6,7,5,4, 12,13,15,14, 10,11,9,8, 24,25,27,26, 30,31,29,28, 20,21,23,22, 18,19,17,16].join(' '));
 console.log();
+
+
+// for each new bit that we turn on, we create new elements by reading the existing sequence from end to start. rinse and repeat
+// 0
+// 1
 
 
 // 00
