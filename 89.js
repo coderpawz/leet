@@ -11,60 +11,60 @@ const grayCode = function(n) {
         }
     }
     return arr;
-}
+};
 
 /**
  * @param {number} n
  * @return {number[]}
  */
-const grayCodeOG = function(n) {
-  if (n === 0) {
-    return [0];
-  }
-  if (n === 1) {
-    return [0,1];
-  }
-  const seq = [0,1,3,2];
-  if (n > 2) {
-    helper(0, 3, n, true, [], seq);
-  }
-  return seq;
-};
+// const grayCodeOG = function(n) {
+//     if (n === 0) {
+//         return [0];
+//     }
+//     if (n === 1) {
+//         return [0,1];
+//     }
+//     const seq = [0,1,3,2];
+//     if (n > 2) {
+//         helper(0, 3, n, true, [], seq);
+//     }
+//     return seq;
+// };
 
-function helper(start, curr, n, reverse, ops, seq) {
-  let nextOp = Math.pow(2, curr - 1);
-  let next = start + Math.pow(2, curr - 1);
-  ops.push(nextOp);
-  addNextFour(reverse, next, seq);
+// function helper(start, curr, n, reverse, ops, seq) {
+//     let nextOp = Math.pow(2, curr - 1);
+//     let next = start + Math.pow(2, curr - 1);
+//     ops.push(nextOp);
+//     addNextFour(reverse, next, seq);
 
-  for (var ii = ops.length - 2; ii >= 0; ii--) {
-    nextOp = -1 * ops[ii];
-    next += nextOp;
-    ops.push(nextOp);
-    reverse = !reverse;
-    addNextFour(reverse, next, seq);
-  }
+//     for (var ii = ops.length - 2; ii >= 0; ii--) {
+//         nextOp = -1 * ops[ii];
+//         next += nextOp;
+//         ops.push(nextOp);
+//         reverse = !reverse;
+//         addNextFour(reverse, next, seq);
+//     }
 
-  if(curr < n) {
-    helper(next, curr+1, n, !reverse, ops, seq);
-  }
-}
+//     if(curr < n) {
+//         helper(next, curr+1, n, !reverse, ops, seq);
+//     }
+// }
 
-function addNextFour(reverse, start, seq) {
-  if (!reverse) {
-    doStep(start, seq);
-  } else {
-    doStepReverse(start, seq);
-  }
-}
+// function addNextFour(reverse, start, seq) {
+//     if (!reverse) {
+//         doStep(start, seq);
+//     } else {
+//         doStepReverse(start, seq);
+//     }
+// }
 
-function doStep(start, seq) {
-  seq.push(start, start+1, start+3, start+2);
-}
+// function doStep(start, seq) {
+//     seq.push(start, start+1, start+3, start+2);
+// }
 
-function doStepReverse(start, seq) {
-  seq.push(start+2, start+3, start+1, start);
-}
+// function doStepReverse(start, seq) {
+//     seq.push(start+2, start+3, start+1, start);
+// }
 
 console.log(grayCode(0).join(' '));
 console.log([].join(' '));

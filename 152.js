@@ -6,58 +6,59 @@ var maxProduct = function(arr) {
     let max_ending_here = arr[0];
     let min_ending_here = arr[0];
     let max_so_far = arr[0];
+    let temp;
     for (let i = 1; i < arr.length; i++) {
-      if (arr[i] > 0) {
-        max_ending_here = Math.max(max_ending_here * arr[i], arr[i]);
-        min_ending_here = Math.min(min_ending_here * arr[i], arr[i]);
-      } else if (arr[i] === 0) {
-        max_ending_here = 0;//Math.max(max_ending_here, 0);
-        min_ending_here = 0;//Math.min(min_ending_here, 0);
-      } else {
-        temp = max_ending_here;
-        max_ending_here = Math.max(min_ending_here * arr[i], arr[i]);
-        min_ending_here = Math.min(temp * arr[i], arr[i]);
-      }
-      if (max_so_far <  max_ending_here) {
-        max_so_far = max_ending_here;
-      }
+        if (arr[i] > 0) {
+            max_ending_here = Math.max(max_ending_here * arr[i], arr[i]);
+            min_ending_here = Math.min(min_ending_here * arr[i], arr[i]);
+        } else if (arr[i] === 0) {
+            max_ending_here = 0;//Math.max(max_ending_here, 0);
+            min_ending_here = 0;//Math.min(min_ending_here, 0);
+        } else {
+            temp = max_ending_here;
+            max_ending_here = Math.max(min_ending_here * arr[i], arr[i]);
+            min_ending_here = Math.min(temp * arr[i], arr[i]);
+        }
+        if (max_so_far <  max_ending_here) {
+            max_so_far = max_ending_here;
+        }
     }
     return max_so_far;
 };
 
-var maxProductDP = function(ns) {
-  const dedupe = (a, n, k, c) =>
-      a.length && a[a.length - 1] === k && n === k ?
-        (c ? a.slice(0, -1) : a) : (a[a.length]=n, a);
+// var maxProductDP = function(ns) {
+//     const dedupe = (a, n, k, c) =>
+//       a.length && a[a.length - 1] === k && n === k ?
+//         (c ? a.slice(0, -1) : a) : (a[a.length]=n, a);
 
-  //default
-  let max = ns.reduce((m, n) => Math.max(m, n), ns[0]);
+//   //default
+//     let max = ns.reduce((m, n) => Math.max(m, n), ns[0]);
 
-  //optimize
-  const nums = ns.length <= 2 ? ns : ns
-    .filter((n, i, a) => (n !== 1 || i === 0) && (!i || !(n === 0 && a[i - 1] === 0)))
-    .reduce((a, n) => dedupe(a, n, -1, a.length >= 2), []);
+//   //optimize
+//     const nums = ns.length <= 2 ? ns : ns
+//     .filter((n, i, a) => (n !== 1 || i === 0) && (!i || !(n === 0 && a[i - 1] === 0)))
+//     .reduce((a, n) => dedupe(a, n, -1, a.length >= 2), []);
 
-  //initialize
-  const dp = [[]];
-  for (let ii = 0; ii < nums.length; ii++) {
-    dp[ii] = [];
-    for (let jj = 0; jj < nums.length; jj++) {
-      dp[ii][jj] = jj === ii ? nums[ii] : 1;
-    }
-  }
+//   //initialize
+//     const dp = [[]];
+//     for (let ii = 0; ii < nums.length; ii++) {
+//         dp[ii] = [];
+//         for (let jj = 0; jj < nums.length; jj++) {
+//             dp[ii][jj] = jj === ii ? nums[ii] : 1;
+//         }
+//     }
 
-  //solve
-  for (let ii = 0; ii < nums.length; ii++) {
-    for (let jj = ii + 1; jj < nums.length; jj++) {
-      dp[ii][jj] = dp[ii][jj - 1] * nums[jj];
-      if (dp[ii][jj] > max) {
-        max = dp[ii][jj];
-      }
-    }
-  }
-  return max;
-};
+//   //solve
+//     for (let ii = 0; ii < nums.length; ii++) {
+//         for (let jj = ii + 1; jj < nums.length; jj++) {
+//             dp[ii][jj] = dp[ii][jj - 1] * nums[jj];
+//             if (dp[ii][jj] > max) {
+//                 max = dp[ii][jj];
+//             }
+//         }
+//     }
+//     return max;
+// };
 
 console.log(maxProduct([-3,0,0,0,0,0,1,-2]), 1);
 console.log(maxProduct([2,-1,-1,2,0,-3,3]), 4);

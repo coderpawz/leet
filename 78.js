@@ -21,7 +21,7 @@ var getSubsetsIterative = function(nums, ps) {
             ps[ps.length] = a;
         }
     }
-}
+};
 
 var getSubsetsRecursive = function(nums, fi, ps) {
     'use strict';
@@ -36,7 +36,7 @@ var getSubsetsRecursive = function(nums, fi, ps) {
     }
 };
 
-console.log('[ [], [ 3 ], [ 2, 3 ], [ 2 ], [ 1, 2 ], [ 1, 2, 3 ], [ 1, 3 ], [ 1 ] ]')
+console.log('[ [], [ 3 ], [ 2, 3 ], [ 2 ], [ 1, 2 ], [ 1, 2, 3 ], [ 1, 3 ], [ 1 ] ]');
 console.log(subsets([1,2,3]));
 console.log();
 

@@ -15,7 +15,7 @@ function largestNumber(nums) {
         }
     });
     return strs.join('').replace(/,/g,'').replace(/^0+/, '0');
-};
+}
 
 console.log('A: ' + largestNumber([123,1239,9012,23,1,3,4,5,7,64]));
 console.log('E: 90127645432312391231');

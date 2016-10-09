@@ -5,19 +5,19 @@
  */
 var uniquePaths = function(m, n) {
     const solutions = [[],[]];
-    for (var ii = 0; ii <= m; ii++) {
-      solutions[0][ii] = 0;
-      solutions[1][ii] = 1;
+    for (let ii = 0; ii <= m; ii++) {
+        solutions[0][ii] = 0;
+        solutions[1][ii] = 1;
     }
-    for (var ii = 2; ii <= n; ii++) {
-      solutions[ii] = [];
-      solutions[ii].push(0,1);
+    for (let ii = 2; ii <= n; ii++) {
+        solutions[ii] = [];
+        solutions[ii].push(0,1);
     }
     solutions[1][0] = 0;
-    for (var ii = 2; ii <= n; ii++) {
-      for (var jj = 2; jj <= m; jj++) {
-        solutions[ii][jj] = solutions[ii - 1][jj] + solutions[ii][jj - 1];
-      }
+    for (let ii = 2; ii <= n; ii++) {
+        for (let jj = 2; jj <= m; jj++) {
+            solutions[ii][jj] = solutions[ii - 1][jj] + solutions[ii][jj - 1];
+        }
     }
     return solutions[n][m];
 };

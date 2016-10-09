@@ -29,7 +29,7 @@ LRUCache.prototype.refresh = function(key) {
         this.freshNode.prev = this.freshnessQueue[key];
         this.freshNode = this.freshnessQueue[key];
     }
-}
+};
 
 /**
  * @param {number} key
@@ -95,13 +95,13 @@ console.log('E: 1');
 console.log();
 
 var lru2 = new LRUCache(3);
-lru2.set(1,1)
-lru2.set(2,2)
-lru2.set(3,3)
-lru2.set(4,4)
+lru2.set(1,1);
+lru2.set(2,2);
+lru2.set(3,3);
+lru2.set(4,4);
 
 console.log('A: ' + lru2.get(4) + ' ' + lru2.get(3) + ' ' + lru2.get(2) + ' ' + lru2.get(1));
 console.log('E: 4 3 2 -1');
-lru2.set(5,5)
+lru2.set(5,5);
 console.log('A: ' + lru2.get(1) + ' ' + lru2.get(2) + ' ' + lru2.get(3) + ' ' + lru2.get(4) + ' ' + lru2.get(5));
 console.log('E: -1 2 3 -1 5');

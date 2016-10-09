@@ -33,10 +33,10 @@ var getSubsets = function(nums, map, ps) {
     }
 };
 
-console.log('[1,2,2]')
+console.log('[1,2,2]');
 console.log(subsetsWithDup([1,2,2]));
 console.log();
 
-console.log('[1,2,3,4,5,6,7,8,10,0]')
+console.log('[1,2,3,4,5,6,7,8,10,0]');
 console.log(subsetsWithDup([1,2,2]));
 console.log();

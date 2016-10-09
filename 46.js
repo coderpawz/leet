@@ -21,7 +21,7 @@ var getSubsetsIterative = function(nums) {
         ps = psTemp;
     }
     return ps;
-}
+};
 
 function spliceCopy(arr, start, del, item) {
     const temp = arr.slice();
@@ -29,6 +29,6 @@ function spliceCopy(arr, start, del, item) {
     return temp;
 }
 
-console.log('[ [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1] ]')
+console.log('[ [1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1] ]');
 console.log(permute([1,2,3]));
 console.log();

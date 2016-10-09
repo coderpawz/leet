@@ -39,9 +39,9 @@ var copyRandomList = function(head) {
     return newNodes[0];
 };
 
-var d = {d:123, next: null, random: null};
-var c = {c:123, next: d, random: null};
-var b = {b:123, next: c, random: d};
+// var d = {d:123, next: null, random: null};
+// var c = {c:123, next: d, random: null};
+// var b = {b:123, next: c, random: d};
 var a = {label:-1, next: null, random: null};
 
 console.log(a);
