@@ -10,3 +10,6 @@ var reverseString = function(s) {
     return r;
     // return s.split('').reverse().join('');
 };
+
+console.log(reverseString('12345'));
+console.log('54321');
