@@ -4,6 +4,10 @@ module.exports = {
         "commonjs": true,
         "es6": true
     },
+    "globals": {
+        "TreeNode": true,
+        "printTree": true
+    },
     "extends": "eslint:recommended",
     "rules": {
         "indent": [
