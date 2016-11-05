@@ -3,78 +3,78 @@
  * @return {number}
  */
 const calculate = function(s) {
-    const DO = {
-        '+': add,
-        '-': sub
-    };
-    const opss = [[]];
-    const res = [];
-    for (var ii = 0; ii < s.length; ii++) {
-        const ch = s.charAt(ii);
-        let ops = opss[opss.length - 1];
-        switch (ch) {
-        case ' ':
-            continue;
-        case '(':
-            res.push('x');
-            opss.push([]);
-            break;
-        case '+':
-        case '-':
-            ops.push(ch);
-            break;
-        case ')':
-            opss.pop();
-            ops = opss[opss.length - 1];
-            if (ops.length) {
-                const temp = res.pop();
-                if (res.length) {
-                    res[res.length - 1] =
+  const DO = {
+    '+': add,
+    '-': sub
+  };
+  const opss = [[]];
+  const res = [];
+  for (var ii = 0; ii < s.length; ii++) {
+    const ch = s.charAt(ii);
+    let ops = opss[opss.length - 1];
+    switch (ch) {
+    case ' ':
+      continue;
+    case '(':
+      res.push('x');
+      opss.push([]);
+      break;
+    case '+':
+    case '-':
+      ops.push(ch);
+      break;
+    case ')':
+      opss.pop();
+      ops = opss[opss.length - 1];
+      if (ops.length) {
+        const temp = res.pop();
+        if (res.length) {
+          res[res.length - 1] =
               DO[ops.pop()](res[res.length - 1], temp);
-                } else {
-                    res.push(temp);
-                }
-            }
-            break;
-        default: {
-            const num = getOperand(s, ii);
-            if (ops.length) {
-                res[res.length - 1] = DO[ops.pop()](res[res.length - 1], num);
-            } else {
-                if (res[res.length - 1] === 'x') {
-                    res[res.length - 1] = num;
-                } else if (res[res.length - 1]) {
-                    res[res.length - 1] = num;
-                } else {
-                    res.push(num);
-                }
-            }
-            ii += num.length - 1;
-            break;
+        } else {
+          res.push(temp);
         }
+      }
+      break;
+    default: {
+      const num = getOperand(s, ii);
+      if (ops.length) {
+        res[res.length - 1] = DO[ops.pop()](res[res.length - 1], num);
+      } else {
+        if (res[res.length - 1] === 'x') {
+          res[res.length - 1] = num;
+        } else if (res[res.length - 1]) {
+          res[res.length - 1] = num;
+        } else {
+          res.push(num);
         }
+      }
+      ii += num.length - 1;
+      break;
     }
-    if (opss[0][0] && res.length === 2) {
-        return DO[opss[0][0]](res[0], res[1]);
     }
-    return parseInt(res[0]);
+  }
+  if (opss[0][0] && res.length === 2) {
+    return DO[opss[0][0]](res[0], res[1]);
+  }
+  return parseInt(res[0]);
 };
 
 function getOperand(s, idx) {
-    let num = '';
-    while ('-+() '.indexOf(s[idx]) === -1 && s[idx]) {
-        num += s[idx];
-        idx++;
-    }
-    return num;
+  let num = '';
+  while ('-+() '.indexOf(s[idx]) === -1 && s[idx]) {
+    num += s[idx];
+    idx++;
+  }
+  return num;
 }
 
 function add(a,b) {
-    return parseInt(a) + parseInt(b);
+  return parseInt(a) + parseInt(b);
 }
 
 function sub(a,b) {
-    return parseInt(a) - parseInt(b);
+  return parseInt(a) - parseInt(b);
 }
 
 console.log(2, calculate('1 + 1'));

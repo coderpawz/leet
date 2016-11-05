@@ -4,28 +4,28 @@
  * @return {boolean}
  */
 var search = function(nums, target) {
-    const size = nums.length;
-    if(size === 1) {
-        return nums[0] === target;
-    }
-    if(size === 0) {
-        return false;
-    }
-    const mid = Math.floor(size / 2);
-    if(nums[mid] === target) {
-        return true;
-    }
-    const right = nums.slice(mid+1);
-    const left = nums.slice(0, mid);
-    const leftIsOrdered = left[0] <= left[left.length - 1];
-    const searchLeft = leftIsOrdered ? left[0] <= target && left[left.length - 1] >= target : !(right[0] <= target && right[right.length - 1] >= target);
-    if(left[0] === right[0] && left[0] === left[left.length - 1] && left[0] === right[right.length - 1]) {
-        return search(left, target) || search(right, target);
-    }
-    if(searchLeft) {
-        return search(left, target);
-    }
-    return search(right, target);
+  const size = nums.length;
+  if(size === 1) {
+    return nums[0] === target;
+  }
+  if(size === 0) {
+    return false;
+  }
+  const mid = Math.floor(size / 2);
+  if(nums[mid] === target) {
+    return true;
+  }
+  const right = nums.slice(mid+1);
+  const left = nums.slice(0, mid);
+  const leftIsOrdered = left[0] <= left[left.length - 1];
+  const searchLeft = leftIsOrdered ? left[0] <= target && left[left.length - 1] >= target : !(right[0] <= target && right[right.length - 1] >= target);
+  if(left[0] === right[0] && left[0] === left[left.length - 1] && left[0] === right[right.length - 1]) {
+    return search(left, target) || search(right, target);
+  }
+  if(searchLeft) {
+    return search(left, target);
+  }
+  return search(right, target);
 };
 
 console.log('[1,2,3,4,5], 4');

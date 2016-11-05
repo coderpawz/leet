@@ -3,17 +3,17 @@
  * @return {number}
  */
 var numTrees = function(n) {
-    if(n <= 1) {
-        return 1;
+  if(n <= 1) {
+    return 1;
+  }
+  let counts = [1,1];
+  for (var ii = 2; ii <= n; ii++) {
+    counts[ii] = 0;
+    for (let kk = 0; kk <= ii - 1; kk++) {
+      counts[ii] += counts[kk] * counts[ii - kk - 1];
     }
-    let counts = [1,1];
-    for (var ii = 2; ii <= n; ii++) {
-        counts[ii] = 0;
-        for (let kk = 0; kk <= ii - 1; kk++) {
-            counts[ii] += counts[kk] * counts[ii - kk - 1];
-        }
-    }
-    return counts[n];
+  }
+  return counts[n];
 };
 /*
 function numTreesRecursive(curr, n, soFar) {

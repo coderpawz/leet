@@ -3,18 +3,18 @@
  * @return {string}
  */
 function largestNumber(nums) {
-    'use strict';
-    const strs = nums.map(n => ('' + n));
-    strs.sort((a1,a2) => {
-        if(a1 + a2 > a2 + a1) {
-            return -1;
-        } else if(a2+a1 > a1+a2) {
-            return 1;
-        } else {
-            return 0;
-        }
-    });
-    return strs.join('').replace(/,/g,'').replace(/^0+/, '0');
+  'use strict';
+  const strs = nums.map(n => ('' + n));
+  strs.sort((a1,a2) => {
+    if(a1 + a2 > a2 + a1) {
+      return -1;
+    } else if(a2+a1 > a1+a2) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return strs.join('').replace(/,/g,'').replace(/^0+/, '0');
 }
 
 console.log('A: ' + largestNumber([123,1239,9012,23,1,3,4,5,7,64]));

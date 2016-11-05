@@ -30,31 +30,31 @@
     }
 };*/
 function findMin(nums) {
-    if (nums === null || nums.length === 0) {
-        return -1;
-    }
+  if (nums === null || nums.length === 0) {
+    return -1;
+  }
 
-    let start = 0;
-    let end = nums.length - 1;
-    while (start + 1 < end) {
-        const mid = start + Math.floor((end - start) / 2);
-        if (nums[mid] === nums[end]) {
+  let start = 0;
+  let end = nums.length - 1;
+  while (start + 1 < end) {
+    const mid = start + Math.floor((end - start) / 2);
+    if (nums[mid] === nums[end]) {
             // if mid equals to end, that means it's fine to remove end
             // the smallest element won't be removed
-            end--;
-        } else if (nums[mid] < nums[end]) {
-            end = mid;
+      end--;
+    } else if (nums[mid] < nums[end]) {
+      end = mid;
             // of course you can merge == & <
-        } else {
-            start = mid;
+    } else {
+      start = mid;
             // or start = mid + 1
-        }
     }
+  }
 
-    if (nums[start] <= nums[end]) {
-        return nums[start];
-    }
-    return nums[end];
+  if (nums[start] <= nums[end]) {
+    return nums[start];
+  }
+  return nums[end];
 }
 
 console.log('[1,1]');

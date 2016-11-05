@@ -18,9 +18,9 @@
 //   return -1;
 // };
 let strStr = function(haystack, needle) {
-    const a = new RegExp(needle, 'g');
-    a.test(haystack);
-    return Math.max(a.lastIndex - needle.length, -1);
+  const a = new RegExp(needle, 'g');
+  a.test(haystack);
+  return Math.max(a.lastIndex - needle.length, -1);
 };
 
 console.log('Expected 0');

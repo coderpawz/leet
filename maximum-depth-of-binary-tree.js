@@ -10,12 +10,12 @@
  * @return {number}
  */
 var maxDepth = function(root, n) {
-    const curr = n || 0;
-    if (!root) {
-        return curr;
-    }
+  const curr = n || 0;
+  if (!root) {
+    return curr;
+  }
 
-    return Math.max(
+  return Math.max(
     maxDepth(root.left, curr + 1),
     maxDepth(root.right, curr + 1)
   );

@@ -2,33 +2,33 @@
  * @constructor
  */
 var LRUCache = function(capacity) {
-    this.freshnessQueue = {};
-    this.staleNode = null;
-    this.freshNode = null;
-    this.cap = capacity;
-    this.size = 0;
-    this.map = {};
+  this.freshnessQueue = {};
+  this.staleNode = null;
+  this.freshNode = null;
+  this.cap = capacity;
+  this.size = 0;
+  this.map = {};
 };
 
 LRUCache.prototype.refresh = function(key) {
-    if(this.staleNode.key === key) {
-        if(this.staleNode.prev) {
-            this.staleNode.prev.next = null;
-            this.staleNode = this.staleNode.prev;
-        }
+  if(this.staleNode.key === key) {
+    if(this.staleNode.prev) {
+      this.staleNode.prev.next = null;
+      this.staleNode = this.staleNode.prev;
     }
-    if(this.freshNode.key !== key) {
-        if(this.freshnessQueue[key].prev) {
-            this.freshnessQueue[key].prev.next = this.freshnessQueue[key].next;
-        }
-        if(this.freshnessQueue[key].next) {
-            this.freshnessQueue[key].next.prev = this.freshnessQueue[key].prev;
-        }
-        this.freshnessQueue[key].prev = null;
-        this.freshnessQueue[key].next = this.freshNode;
-        this.freshNode.prev = this.freshnessQueue[key];
-        this.freshNode = this.freshnessQueue[key];
+  }
+  if(this.freshNode.key !== key) {
+    if(this.freshnessQueue[key].prev) {
+      this.freshnessQueue[key].prev.next = this.freshnessQueue[key].next;
     }
+    if(this.freshnessQueue[key].next) {
+      this.freshnessQueue[key].next.prev = this.freshnessQueue[key].prev;
+    }
+    this.freshnessQueue[key].prev = null;
+    this.freshnessQueue[key].next = this.freshNode;
+    this.freshNode.prev = this.freshnessQueue[key];
+    this.freshNode = this.freshnessQueue[key];
+  }
 };
 
 /**
@@ -36,12 +36,12 @@ LRUCache.prototype.refresh = function(key) {
  * @returns {number}
  */
 LRUCache.prototype.get = function(key) {
-    if(this.map[key]) {
-        this.refresh(key);
-        return this.map[key];
-    } else {
-        return -1;
-    }
+  if(this.map[key]) {
+    this.refresh(key);
+    return this.map[key];
+  } else {
+    return -1;
+  }
 };
 
 /**
@@ -50,36 +50,36 @@ LRUCache.prototype.get = function(key) {
  * @returns {void}
  */
 LRUCache.prototype.set = function(key, value) {
-    if(this.cap <= 0) {
-        return;
-    }
-    if(this.map[key]) {
-        this.map[key] = value;
-        this.refresh(key);
+  if(this.cap <= 0) {
+    return;
+  }
+  if(this.map[key]) {
+    this.map[key] = value;
+    this.refresh(key);
+  } else {
+    this.map[key] = value;
+    this.freshnessQueue[key] = { prev: null, next: null, key: key };
+    if(this.freshNode) {
+      this.freshnessQueue[key].next = this.freshNode;
+      this.freshNode.prev = this.freshnessQueue[key];
+      this.freshNode = this.freshnessQueue[key];
     } else {
-        this.map[key] = value;
-        this.freshnessQueue[key] = { prev: null, next: null, key: key };
-        if(this.freshNode) {
-            this.freshnessQueue[key].next = this.freshNode;
-            this.freshNode.prev = this.freshnessQueue[key];
-            this.freshNode = this.freshnessQueue[key];
-        } else {
-            this.freshNode = this.freshnessQueue[key];
-        }
-        if(!this.staleNode) {
-            this.staleNode = this.freshnessQueue[key];
-        }
-        if(this.cap > this.size) {
-            this.size++;
-        } else {
-            delete this.map[this.staleNode.key];
-            delete this.freshnessQueue[this.staleNode.key];
-            if(this.staleNode.prev) {
-                this.staleNode.prev.next = null;
-                this.staleNode = this.staleNode.prev;
-            }
-        }
+      this.freshNode = this.freshnessQueue[key];
     }
+    if(!this.staleNode) {
+      this.staleNode = this.freshnessQueue[key];
+    }
+    if(this.cap > this.size) {
+      this.size++;
+    } else {
+      delete this.map[this.staleNode.key];
+      delete this.freshnessQueue[this.staleNode.key];
+      if(this.staleNode.prev) {
+        this.staleNode.prev.next = null;
+        this.staleNode = this.staleNode.prev;
+      }
+    }
+  }
 };
 
 var lru = new LRUCache(2);

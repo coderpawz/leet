@@ -5,32 +5,32 @@ require('./helpers/treeNode');
  * @return {TreeNode[]}
  */
 const generateTrees = function(n) {
-    if (n === 0) {
-        return [];
-    }
-    return helper(1, n);
+  if (n === 0) {
+    return [];
+  }
+  return helper(1, n);
 };
 
 function helper(min, max) {
-    const res = [];
-    let lts = [];
-    let rts = [];
-    if (min > max) {
-        return [null];
+  const res = [];
+  let lts = [];
+  let rts = [];
+  if (min > max) {
+    return [null];
+  }
+  for (var ii = min; ii <= max; ii++) {
+    lts = helper(min, ii - 1);
+    rts = helper(ii + 1, max);
+    for (let ll = 0; ll < lts.length; ll++) {
+      for (let rr = 0; rr < rts.length; rr++) {
+        const node = new TreeNode(ii);
+        node.left = lts[ll];
+        node.right = rts[rr];
+        res.push(node);
+      }
     }
-    for (var ii = min; ii <= max; ii++) {
-        lts = helper(min, ii - 1);
-        rts = helper(ii + 1, max);
-        for (let ll = 0; ll < lts.length; ll++) {
-            for (let rr = 0; rr < rts.length; rr++) {
-                const node = new TreeNode(ii);
-                node.left = lts[ll];
-                node.right = rts[rr];
-                res.push(node);
-            }
-        }
-    }
-    return res;
+  }
+  return res;
 }
 
 var a, b, c, arr;

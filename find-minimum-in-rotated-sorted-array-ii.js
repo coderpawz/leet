@@ -3,33 +3,33 @@
  * @return {number}
  */
 var findMin = function(nums, minSoFar) {
-    'use strict';
-    const size = nums.length;
-    minSoFar = typeof minSoFar === 'undefined' ? Infinity : minSoFar;
+  'use strict';
+  const size = nums.length;
+  minSoFar = typeof minSoFar === 'undefined' ? Infinity : minSoFar;
 
-    if(size === 1) {
-        return Math.min(nums[0], minSoFar);
-    }
-    if(size === 2) {
-        return Math.min(nums[0], nums[1], minSoFar);
-    }
+  if(size === 1) {
+    return Math.min(nums[0], minSoFar);
+  }
+  if(size === 2) {
+    return Math.min(nums[0], nums[1], minSoFar);
+  }
 
-    const mid = Math.floor(size / 2);
-    minSoFar = Math.min(nums[mid], minSoFar);
-    const right = nums.slice(mid+1);
-    const left = nums.slice(0, mid);
-    const leftIsOrdered = left[0] <= left[left.length - 1];
-    const rightIsOrdered = right[0] <= right[right.length - 1];
+  const mid = Math.floor(size / 2);
+  minSoFar = Math.min(nums[mid], minSoFar);
+  const right = nums.slice(mid+1);
+  const left = nums.slice(0, mid);
+  const leftIsOrdered = left[0] <= left[left.length - 1];
+  const rightIsOrdered = right[0] <= right[right.length - 1];
 
-    if(leftIsOrdered && !rightIsOrdered) {
-        return findMin(right, minSoFar);
-    } else if(rightIsOrdered && !leftIsOrdered) {
-        return findMin(left, minSoFar);
-    } else if(left[0] === right[0] && left[0] === left[left.length - 1] && left[0] === right[right.length - 1]) {
-        return Math.min(findMin(left, minSoFar), findMin(right, minSoFar));
-    } else  {
-        return Math.min(left[0], right[0], minSoFar);
-    }
+  if(leftIsOrdered && !rightIsOrdered) {
+    return findMin(right, minSoFar);
+  } else if(rightIsOrdered && !leftIsOrdered) {
+    return findMin(left, minSoFar);
+  } else if(left[0] === right[0] && left[0] === left[left.length - 1] && left[0] === right[right.length - 1]) {
+    return Math.min(findMin(left, minSoFar), findMin(right, minSoFar));
+  } else  {
+    return Math.min(left[0], right[0], minSoFar);
+  }
 };
 
 console.log('[1,1]');

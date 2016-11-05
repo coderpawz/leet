@@ -3,14 +3,14 @@
  * @return {number[]}
  */
 const grayCode = function(n) {
-    const arr = [0];
-    for(let i = 0; i < n; i++) {
-        let inc = 1 << i;
-        for(let j = arr.length - 1; j >= 0; j--) {
-            arr[arr.length] = arr[j] + inc;
-        }
+  const arr = [0];
+  for(let i = 0; i < n; i++) {
+    let inc = 1 << i;
+    for(let j = arr.length - 1; j >= 0; j--) {
+      arr[arr.length] = arr[j] + inc;
     }
-    return arr;
+  }
+  return arr;
 };
 
 /**

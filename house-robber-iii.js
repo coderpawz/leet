@@ -11,34 +11,34 @@
  * @return {number}
  */
 const rob_help = function(root, hash, cache) {
-    const hashL = hash + 'l';
-    const hashR = hash + 'r';
-    if (!root) {
-        cache[hashL] = 0;
-        cache[hashR] = 0;
-        return 0;
+  const hashL = hash + 'l';
+  const hashR = hash + 'r';
+  if (!root) {
+    cache[hashL] = 0;
+    cache[hashR] = 0;
+    return 0;
+  }
+  if (!root.left && !root.right) {
+    cache[hashL] = 0;
+    cache[hashR] = 0;
+    return root.val || 0;
+  } else {
+    if(typeof cache[hashL] === 'undefined') {
+      cache[hashL] = rob_help(root.left, hashL, cache);
     }
-    if (!root.left && !root.right) {
-        cache[hashL] = 0;
-        cache[hashR] = 0;
-        return root.val || 0;
-    } else {
-        if(typeof cache[hashL] === 'undefined') {
-            cache[hashL] = rob_help(root.left, hashL, cache);
-        }
-        if(typeof cache[hashR] === 'undefined') {
-            cache[hashR] = rob_help(root.right, hashR, cache);
-        }
-        return Math.max(cache[hashL] + cache[hashR], root.val + cache[hashL + 'l'] + cache[hashL + 'r'] + cache[hashR + 'l'] + cache[hashR + 'r']);
+    if(typeof cache[hashR] === 'undefined') {
+      cache[hashR] = rob_help(root.right, hashR, cache);
     }
+    return Math.max(cache[hashL] + cache[hashR], root.val + cache[hashL + 'l'] + cache[hashL + 'r'] + cache[hashR + 'l'] + cache[hashR + 'r']);
+  }
 };
 
 const rob = function(root) {
-    return rob_help(root, '', {});
+  return rob_help(root, '', {});
 };
 
 const node = function(val, left, right) {
-    return { val, left, right };
+  return { val, left, right };
 };
 
 console.log(`actual is ${rob(node())}`);

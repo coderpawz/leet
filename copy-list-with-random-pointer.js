@@ -6,18 +6,18 @@
  * }
  */
 function RandomListNode(label) {
-    this.label = label;
-    this.next = this.random = null;
+  this.label = label;
+  this.next = this.random = null;
 }
 
 function print(head) {
-    let curr = head;
-    const res = [];
-    while (curr) {
-        res.push(curr.random ? curr.random.label : '#');
-        curr = curr.next;
-    }
-    return res.join(', ');
+  let curr = head;
+  const res = [];
+  while (curr) {
+    res.push(curr.random ? curr.random.label : '#');
+    curr = curr.next;
+  }
+  return res.join(', ');
 }
 
 /**
@@ -25,31 +25,31 @@ function print(head) {
  * @return {RandomListNode}
  */
 var copyRandomList = function(head) {
-    'use strict';
+  'use strict';
 
-    if(!head) {
-        return null;
-    }
+  if(!head) {
+    return null;
+  }
 
-    const nodes = [];
-    const rands = [];
-    const newNodes = [];
-    let curr = head;
-    while(curr) {
-        nodes.push(curr);
-        newNodes.push(new RandomListNode(curr.label));
-        curr = curr.next;
-    }
-    curr = head;
-    while(curr) {
-        rands.push(nodes.indexOf(curr.random));
-        curr = curr.next;
-    }
-    for(let ii = 0; ii < nodes.length; ii++) {
-        newNodes[ii].next = newNodes[ii+1] || null;
-        newNodes[ii].random = rands[ii] === -1 ? null : newNodes[rands[ii]];
-    }
-    return newNodes[0];
+  const nodes = [];
+  const rands = [];
+  const newNodes = [];
+  let curr = head;
+  while(curr) {
+    nodes.push(curr);
+    newNodes.push(new RandomListNode(curr.label));
+    curr = curr.next;
+  }
+  curr = head;
+  while(curr) {
+    rands.push(nodes.indexOf(curr.random));
+    curr = curr.next;
+  }
+  for(let ii = 0; ii < nodes.length; ii++) {
+    newNodes[ii].next = newNodes[ii+1] || null;
+    newNodes[ii].random = rands[ii] === -1 ? null : newNodes[rands[ii]];
+  }
+  return newNodes[0];
 };
 
 const a = new RandomListNode(-1);

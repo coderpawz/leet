@@ -3,27 +3,27 @@
  * @return {number}
  */
 var maxProduct = function(arr) {
-    let max_ending_here = arr[0];
-    let min_ending_here = arr[0];
-    let max_so_far = arr[0];
-    let temp;
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > 0) {
-            max_ending_here = Math.max(max_ending_here * arr[i], arr[i]);
-            min_ending_here = Math.min(min_ending_here * arr[i], arr[i]);
-        } else if (arr[i] === 0) {
-            max_ending_here = 0;//Math.max(max_ending_here, 0);
-            min_ending_here = 0;//Math.min(min_ending_here, 0);
-        } else {
-            temp = max_ending_here;
-            max_ending_here = Math.max(min_ending_here * arr[i], arr[i]);
-            min_ending_here = Math.min(temp * arr[i], arr[i]);
-        }
-        if (max_so_far <  max_ending_here) {
-            max_so_far = max_ending_here;
-        }
+  let max_ending_here = arr[0];
+  let min_ending_here = arr[0];
+  let max_so_far = arr[0];
+  let temp;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > 0) {
+      max_ending_here = Math.max(max_ending_here * arr[i], arr[i]);
+      min_ending_here = Math.min(min_ending_here * arr[i], arr[i]);
+    } else if (arr[i] === 0) {
+      max_ending_here = 0;//Math.max(max_ending_here, 0);
+      min_ending_here = 0;//Math.min(min_ending_here, 0);
+    } else {
+      temp = max_ending_here;
+      max_ending_here = Math.max(min_ending_here * arr[i], arr[i]);
+      min_ending_here = Math.min(temp * arr[i], arr[i]);
     }
-    return max_so_far;
+    if (max_so_far <  max_ending_here) {
+      max_so_far = max_ending_here;
+    }
+  }
+  return max_so_far;
 };
 
 // var maxProductDP = function(ns) {

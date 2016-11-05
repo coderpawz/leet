@@ -5,35 +5,35 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    let start = 0;
-    let end = nums.length - 1;
-    let mid;
-    while (start + 1 < end) {
-        mid = Math.floor(start + (end - start)/2);
-        if(nums[mid] === target) {
-            return mid;
-        }
-        if(nums[mid] > target) {
-            if((nums[start] < nums[mid] && nums[start] < target) || nums[end] > nums[mid]) {
-                end = mid;
-            } else {
-                start = mid;
-            }
-        } else {
-            if((nums[end] > nums[mid] && nums[end] > target) || nums[start] < nums[mid]) {
-                start = mid;
-            } else {
-                end = mid;
-            }
-        }
+  let start = 0;
+  let end = nums.length - 1;
+  let mid;
+  while (start + 1 < end) {
+    mid = Math.floor(start + (end - start)/2);
+    if(nums[mid] === target) {
+      return mid;
     }
-    if (nums[0] === target) {
-        return 0;
+    if(nums[mid] > target) {
+      if((nums[start] < nums[mid] && nums[start] < target) || nums[end] > nums[mid]) {
+        end = mid;
+      } else {
+        start = mid;
+      }
+    } else {
+      if((nums[end] > nums[mid] && nums[end] > target) || nums[start] < nums[mid]) {
+        start = mid;
+      } else {
+        end = mid;
+      }
     }
-    if (nums[nums.length-1] === target) {
-        return nums.length-1;
-    }
-    return -1;
+  }
+  if (nums[0] === target) {
+    return 0;
+  }
+  if (nums[nums.length-1] === target) {
+    return nums.length-1;
+  }
+  return -1;
 };
 
 console.log('2', search([6,7,8,1], 8));

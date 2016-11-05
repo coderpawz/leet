@@ -7,24 +7,24 @@ const Heap = require('./helpers/minheap');
  * @return {number[][]}
  */
 var kSmallestPairs = function(numsN, numsM, k) {
-    const res = [];
-    const lessThan = (tri1, tri2) => tri1[0] < tri2[0];
-    const heap = new Heap(lessThan);
-    const push = (n, m) => {
-        if (n < numsN.length && m < numsM.length) {
-            heap.push([numsM[m] + numsN[n], n, m]);
-        }
-    };
-    push(0, 0);
-    while (heap.size() && res.length < k) {
-        const [_, n, m] = heap.pop();//eslint-disable-line no-unused-vars
-        res.push([numsN[n], numsM[m]]);
-        push(n, m + 1);
-        if (m === 0) {
-            push(n + 1, 0);
-        }
+  const res = [];
+  const lessThan = (tri1, tri2) => tri1[0] < tri2[0];
+  const heap = new Heap(lessThan);
+  const push = (n, m) => {
+    if (n < numsN.length && m < numsM.length) {
+      heap.push([numsM[m] + numsN[n], n, m]);
     }
-    return res;
+  };
+  push(0, 0);
+  while (heap.size() && res.length < k) {
+    const [_, n, m] = heap.pop();//eslint-disable-line no-unused-vars
+    res.push([numsN[n], numsM[m]]);
+    push(n, m + 1);
+    if (m === 0) {
+      push(n + 1, 0);
+    }
+  }
+  return res;
 };
 
 console.log(kSmallestPairs([1,7,11], [2,4,6],3).join('  '));

@@ -6,10 +6,7 @@
 var searchMatrix = function(matrix, target) {
   let jj;
   for (let ii = 0; ii < matrix.length; ii++) {
-    for (jj = matrix[ii].length - 1; jj && matrix[ii][jj] > target; jj--) {
-
-    }
-    console.log('test', matrix[ii][jj])
+    for (jj = matrix[ii].length - 1; jj && matrix[ii][jj] > target; jj--) {}//eslint-disable-line no-empty
     if (matrix[ii][jj] === target) {
       return true;
     }
