@@ -5,7 +5,7 @@
 var convertToTitle = function(n) {
   const letters = ['','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
   let rem = 0;
-  let num = n
+  let num = n;
   let res = '';
   while (num > 0) {
     if (num <= 26) {
