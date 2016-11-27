@@ -33,8 +33,8 @@ var insert = function(intervals, newInterval) {
 };
 
 function Interval(start, end) {
-    this.start = start;
-    this.end = end;
+  this.start = start;
+  this.end = end;
 }
 
 console.log(insert([new Interval(1,3), new Interval(6,9)], new Interval(2,5)), [new Interval(1,5), new Interval(6,9)]);

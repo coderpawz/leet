@@ -36,7 +36,7 @@ function isClosing(ch) {
   return ch === ')' || ch === ']' || ch === '}';
 }
 
-console.log(true, isValid("()"));
-console.log(true, isValid("()[]{}"));
-console.log(false, isValid("(]"));
-console.log(false, isValid("([)]"));
+console.log(true, isValid('()'));
+console.log(true, isValid('()[]{}'));
+console.log(false, isValid('(]'));
+console.log(false, isValid('([)]'));
