@@ -32,10 +32,10 @@ var canConstruct = function(ransomNote, magazine) {
     y: 0,
     z: 0
   };
-  for (var ii = magazine.length - 1; ii >= 0; ii--) {
+  for (let ii = magazine.length - 1; ii >= 0; ii--) {
     map[magazine.charAt(ii)]++;
   }
-  for (var ii = ransomNote.length - 1; ii >= 0; ii--) {
+  for (let ii = ransomNote.length - 1; ii >= 0; ii--) {
     if (!map[ransomNote.charAt(ii)]) {
       return false;
     }
