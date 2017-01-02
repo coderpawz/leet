@@ -18,7 +18,7 @@ var maximalSquare = function(matrix) {
           matrix[ii-1][jj-1],
           matrix[ii][jj-1]) + 1;
       }
-      max = Math.max(max, Math.pow(matrix[ii][jj], 2))
+      max = Math.max(max, Math.pow(matrix[ii][jj], 2));
     }
   }
   return max;

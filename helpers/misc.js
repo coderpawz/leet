@@ -17,3 +17,7 @@ function getPower(v) {
   }
   return r | 1;//we want max power, or with first bit
 }
+
+module.exports = getPower;
+
+console.log(getPower(8), 3);

@@ -29,6 +29,6 @@ var shortestDistance = function(words, word1, word2) {
   return shortest;
 };
 
-console.log(shortestDistance(["a","x","x","b","c","a","b"], "a", "b"), 1);
-console.log(shortestDistance(["a","x","x","ba","c","asa","b"], "a", "b"), 6);
-console.log(shortestDistance(["a","x","b","b","b","b","a"], "a", "b"), 1);
+console.log(shortestDistance(['a','x','x','b','c','a','b'], 'a', 'b'), 1);
+console.log(shortestDistance(['a','x','x','ba','c','asa','b'], 'a', 'b'), 6);
+console.log(shortestDistance(['a','x','b','b','b','b','a'], 'a', 'b'), 1);

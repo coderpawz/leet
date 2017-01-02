@@ -50,8 +50,8 @@ var insertionSortList = function(head) {
 };
 
 function ListNode(val, next) {
-    this.val = val;
-    this.next = next || null;
+  this.val = val;
+  this.next = next || null;
 }
 
 console.log(insertionSortList(new ListNode(4, new ListNode(2, new ListNode(3)))));
