@@ -2,82 +2,38 @@
  * @param {string} s
  * @return {number}
  */
-var calculate = function(str) {
-const DO = {
-    '+': add,
-    '-': sub,
-    '*': mult,
-    '/': div
-  };
-  const s = [];
-  const ops = [];
-  const nums = [];
-  for (let ii = 0; ii < str.length; ii++) {
-    if (str[ii] !== ' ') {
-      s.push(str[ii]);
-    }
-  }
-  for (let ii = 0; ii < s.length; ii++) {
-    const ch = s[ii];
-    switch (ch) {
-      case '+':
-      case '-':
-        while(ops.length) {
-          nums.unshift(DO[ops.shift()](nums.shift(),nums.shift()));
-        }
-        ops.push(ch);
-        break;
-      case '*':
-      case '/':
-        ops.push(ch);
-        break;
-      default: {
-        const num = getOperand(s, ii);
-        ii += num.length - 1;
-        if (ops.length && isInOrder(ops[ops.length-1], s[ii+1])) {
-          nums[nums.length - 1] = DO[ops.pop()](nums[nums.length - 1], num);
-        } else {
-          nums.push(num);
-        }
-        break;
+const calculate = function(str) {
+  str = '+' + str + '+';
+  let total = 0;
+  let term = 0;
+  let n;
+  let op;
+  for (let ii = 0; ii < str.length;) {
+    while((op = str[ii++]) === ' ') {/**/}
+    if (op === '+' || op === '-') {
+      total += term;
+      term = '';
+      while((/[0-9\s]/).test(str[ii])) {
+        term += str[ii++];
+      }
+      term = parseInt(term);
+      term *= (op === '+') ? 1 : -1;
+    } else {
+      n = '';
+      while((/[0-9\s]/).test(str[ii])) {
+        n += str[ii++];
+      }
+      n = parseInt(n);
+      if (op === '*') {
+        term *= n;
+      } else {
+        term /= n;
+        term = Math.trunc(term);
       }
     }
   }
-  while(ops.length) {
-    nums.unshift(DO[ops.shift()](nums.shift(),nums.shift()));
-  }
-  return parseInt(nums[0]);
+  return total;
 };
-
-function isInOrder(op1, op2) {
-  return !op2 || '0123456789-+'.indexOf(op2) !== -1 ||
-    op1 === '*' || op1 === '/';
-}
-
-function getOperand(s, idx) {
-  let num = '';
-  while ('-+*/ '.indexOf(s[idx]) === -1 && s[idx]) {
-    num += s[idx];
-    idx++;
-  }
-  return num;
-}
-
-function add(a,b) {
-  return parseInt(a) + parseInt(b);
-}
-
-function sub(a,b) {
-  return parseInt(a) - parseInt(b);
-}
-
-function mult(a,b) {
-  return parseInt(a) * parseInt(b);
-}
-
-function div(a,b) {
-  return Math.trunc(parseInt(a) / parseInt(b));
-}
 
 console.log(2, calculate('1 + 1'));
 console.log(0, calculate('0 + 1 -1'));
