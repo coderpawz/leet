@@ -35,7 +35,6 @@ var minDistance = function(word1, word2) {
       }
     }
   }
-  // console.log(dp)
   return dp[word1.length][word2.length];
 };
 
