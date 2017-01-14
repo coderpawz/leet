@@ -107,10 +107,10 @@ console.log(strongPasswordChecker('aaacaaacaaacaaacaaacaaacaaacaaa'), 13, 'aaaca
 console.log(strongPasswordChecker('aaaacaaaacaaaacaaaacaaaacaaaacaaaacaaaa'), 21, 'aaaacaaaacaaaacaaaacaaaacaaaacaaaacaaaa');
 console.log(strongPasswordChecker('aaaaacaaaaacaaaaacaaaaacaaaaacaaaaacaaaaacaaaaa'), 29, 'aaaaacaaaaacaaaaacaaaaacaaaaacaaaaacaaaaacaaaaa');
 console.log(strongPasswordChecker('aaaaaacaaaaaacaaaaaacaaaaaacaaaaaacaaaaaacaaaaaacaaaaa'), 36, 'aaaaaacaaaaaacaaaaaacaaaaaacaaaaaacaaaaaacaaaaaacaaaaa');
-console.log()
+console.log();
 console.log(strongPasswordChecker('xc1xczxczaaaaazxczxSzx'), 3, 'xc1xczxczaaaaazxczxSzx');
 console.log(strongPasswordChecker('xczxcaaaaaaaaaaaczxczx'), 5, 'xczxcaaaaaaaaaaaczxczx');
 
 console.log(strongPasswordChecker('1234567890123456Baaaaa'), 3, '1234567890123456Baaaaa');
-console.log()
+console.log();
 console.log(strongPasswordChecker('aaaabbaaabbaaa123456A'), 3, 'aaaabbaaabbaaa123456A');

@@ -20,7 +20,7 @@ var removeDuplicates = function(nums) {
 };
 
 let nums = [1,1,2];
-console.log(removeDuplicates(nums), 2)
+console.log(removeDuplicates(nums), 2);
 console.log(nums);
 console.log([1,2]);
 console.log('====================');
