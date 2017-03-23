@@ -19,10 +19,8 @@ function verticalOrder(root) {
     for(let ii = minMax.min; ii <= minMax.max; ii++) {
       list.push([]);
     }
-    const q = [];
-    const idx = [];
-    idx.unshift(-minMax.min);
-    q.unshift(root);
+    const q = [root];
+    const idx = [-minMax.min];
     while (q.length) {
       const node = q.pop();
       const i = idx.pop();
