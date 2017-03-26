@@ -95,27 +95,27 @@ function getThrees(hun, teen, ten, one) {
   return res.join(' ');
 }
 
-console.log("One Hundred Twenty Three");
+console.log('One Hundred Twenty Three');
 console.log(numberToWords(123));
 console.log();
-console.log("Twelve Thousand Three Hundred Forty Five");
+console.log('Twelve Thousand Three Hundred Forty Five');
 console.log(numberToWords(12345));
 console.log();
-console.log("One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven");
+console.log('One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven');
 console.log(numberToWords(1234567));
 console.log();
-console.log("One");
+console.log('One');
 console.log(numberToWords(1));
 console.log();
-console.log("Eleven");
+console.log('Eleven');
 console.log(numberToWords(11));
 console.log();
-console.log("Twenty");
+console.log('Twenty');
 console.log(numberToWords(20));
 console.log();
-console.log("One Million");
+console.log('One Million');
 console.log(numberToWords(1000000));
 console.log();
-console.log("One Billion One Hundred Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven");
+console.log('One Billion One Hundred Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven');
 console.log(numberToWords(1100234567));
 console.log();

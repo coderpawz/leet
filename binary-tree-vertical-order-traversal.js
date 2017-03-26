@@ -10,45 +10,45 @@
  * @return {number[][]}
  */
 function verticalOrder(root) {
-    if (!root || !root.val) {
-      return [];
+  if (!root || !root.val) {
+    return [];
+  }
+  const minMax = { min: 0, max: 0 };
+  const list = [];
+  computeRange(root, 0, minMax);
+  for(let ii = minMax.min; ii <= minMax.max; ii++) {
+    list.push([]);
+  }
+  const q = [root];
+  const idx = [-minMax.min];
+  while (q.length) {
+    const node = q.pop();
+    const i = idx.pop();
+    list[i].push(node.val);
+    if (node.left){
+      q.unshift(node.left);
+      idx.unshift(i - 1);
     }
-    const minMax = { min: 0, max: 0 };
-    const list = [];
-    computeRange(root, 0, minMax);
-    for(let ii = minMax.min; ii <= minMax.max; ii++) {
-      list.push([]);
+    if (node.right){
+      q.unshift(node.right);
+      idx.unshift(i + 1);
     }
-    const q = [root];
-    const idx = [-minMax.min];
-    while (q.length) {
-      const node = q.pop();
-      const i = idx.pop();
-      list[i].push(node.val);
-      if (node.left){
-          q.unshift(node.left);
-          idx.unshift(i - 1);
-      }
-      if (node.right){
-          q.unshift(node.right);
-          idx.unshift(i + 1);
-      }
-    }
-    return list;
+  }
+  return list;
 }
 function computeRange(root, idx, mm){
-    if(!root) {
-      return;
-    }
-    mm.min = Math.min(mm.min, idx);
-    mm.max = Math.max(mm.max, idx);
-    computeRange(root.left, idx - 1, mm);
-    computeRange(root.right, idx + 1, mm);
+  if(!root) {
+    return;
+  }
+  mm.min = Math.min(mm.min, idx);
+  mm.max = Math.max(mm.max, idx);
+  computeRange(root.left, idx - 1, mm);
+  computeRange(root.right, idx + 1, mm);
 }
 
 function TreeNode(val) {
-    this.val = val;
-    this.left = this.right = null;
+  this.val = val;
+  this.left = this.right = null;
 }
 
 let a = new TreeNode(1);
