@@ -6,7 +6,7 @@
 var ZigzagIterator = function ZigzagIterator(v1, v2) {
   this.vs = [v1, v2].filter(a => a.length);
   this.curr = 0;
-  this.idxs = this.vs.map(a => 0);
+  this.idxs = this.vs.map(() => 0);
 };
 
 

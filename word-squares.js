@@ -66,22 +66,22 @@ function Trie() {
       curr = curr.children[w[ii]];
     }
     curr.isWord = true;
-  }
+  };
 }
 
 console.log([
-  [ "wall", "area", "lead", "lady"],
-  [ "ball", "area", "lead", "lady"]
+  [ 'wall', 'area', 'lead', 'lady'],
+  [ 'ball', 'area', 'lead', 'lady']
 ]);
-console.log(wordSquares(["area","lead","wall","lady","ball"]));
+console.log(wordSquares(['area','lead','wall','lady','ball']));
 
 console.log([
-  [ "baba", "abat", "baba", "atan"],
-  [ "baba", "abat", "baba", "atal"]
+  [ 'baba', 'abat', 'baba', 'atan'],
+  [ 'baba', 'abat', 'baba', 'atal']
 ]);
-console.log(wordSquares(["abat","baba","atan","atal"]));
+console.log(wordSquares(['abat','baba','atan','atal']));
 
 console.log([
-  [ "aaaa", "aaaa", "aaaa", "aaaa"]
+  [ 'aaaa', 'aaaa', 'aaaa', 'aaaa']
 ]);
-console.log(wordSquares(["aaaa"]));
+console.log(wordSquares(['aaaa']));
