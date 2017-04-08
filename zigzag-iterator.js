@@ -24,7 +24,6 @@ ZigzagIterator.prototype.hasNext = function hasNext() {
  */
 ZigzagIterator.prototype.next = function next() {
   const res = this.vs[this.curr][this.idxs[this.curr]];
-  if (res === 3) debugger;
   this.idxs[this.curr]++;
   if (this.idxs[this.curr] >= this.vs[this.curr].length) {
     this.vs.splice(this.curr, 1);
