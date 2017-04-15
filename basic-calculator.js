@@ -3,79 +3,47 @@
  * @return {number}
  */
 const calculate = function(s) {
-  const DO = {
-    '+': add,
-    '-': sub
-  };
-  const opss = [[]];
-  const res = [];
+  const stack = [];
+  let number = 0;
+  let sign = 1;
+  let result = 0;
   for (var ii = 0; ii < s.length; ii++) {
     const ch = s.charAt(ii);
-    let ops = opss[opss.length - 1];
     switch (ch) {
-    case ' ':
-      continue;
-    case '(':
-      res.push('x');
-      opss.push([]);
-      break;
-    case '+':
-    case '-':
-      ops.push(ch);
-      break;
-    case ')':
-      opss.pop();
-      ops = opss[opss.length - 1];
-      if (ops.length) {
-        const temp = res.pop();
-        if (res.length) {
-          res[res.length - 1] =
-              DO[ops.pop()](res[res.length - 1], temp);
-        } else {
-          res.push(temp);
-        }
-      }
-      break;
-    default: {
-      const num = getOperand(s, ii);
-      if (ops.length) {
-        res[res.length - 1] = DO[ops.pop()](res[res.length - 1], num);
-      } else {
-        if (res[res.length - 1] === 'x') {
-          res[res.length - 1] = num;
-        } else if (res[res.length - 1]) {
-          res[res.length - 1] = num;
-        } else {
-          res.push(num);
-        }
-      }
-      ii += num.length - 1;
-      break;
-    }
+      case ' ':
+        continue;
+      case '+':
+        result += sign * number;
+        number = '';
+        sign = 1;
+        break;
+      case '-':
+        result += sign * number;
+        number = 0;
+        sign = -1;
+        break;
+      case ')':
+        result += sign * number;
+        result *= stack.pop();
+        result += stack.pop();
+        number = '';
+        break;
+      case '(':
+        stack.push(result);
+        stack.push(sign);
+        result = 0;
+        sign = 1;
+        break;
+      default:
+        number = number * 10 + parseInt(ch);
+        break;
     }
   }
-  if (opss[0][0] && res.length === 2) {
-    return DO[opss[0][0]](res[0], res[1]);
+  if (number) {
+    result += sign * number;
   }
-  return parseInt(res[0]);
+  return result;
 };
-
-function getOperand(s, idx) {
-  let num = '';
-  while ('-+() '.indexOf(s[idx]) === -1 && s[idx]) {
-    num += s[idx];
-    idx++;
-  }
-  return num;
-}
-
-function add(a,b) {
-  return parseInt(a) + parseInt(b);
-}
-
-function sub(a,b) {
-  return parseInt(a) - parseInt(b);
-}
 
 console.log(2, calculate('1 + 1'));
 console.log(0, calculate('0 + 1 -1'));
