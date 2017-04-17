@@ -11,38 +11,24 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-  'use strict';
-  const m = 0;
-  return traverse(smallest(root, k), k, m + 1).foundIt;
+  const elements = [];
+  traverse(root, k, elements);
+  return elements[k - 1];
 };
 
-var traverse = function(tiny, k, m) {
-  'use strict';
-  let res = {};
-  if(k === m) {
-    return { foundIt: tiny.val };
-  } else {
-    res.m = m + 1;
+function traverse(node, k, elements) {
+  if(!node || k <= elements.length) {
+    return;
   }
-  if(tiny.right) {
-    res = traverse(smallest(tiny.right), k, m + 1);
-    if(res.foundIt) {
-      return res;
-    }
+  traverse(node.left, k, elements);
+  if (k <= elements.length) {
+    return;
   }
-  if(tiny.parent) {
-    res = traverse(tiny.parent, k, res.m);
+  elements.push(node.val);
+  if (k <= elements.length) {
+    return;
   }
-  return res;
-};
-
-var smallest = function(root) {
-  if(!root.left) {
-    return root;
-  } else {
-    root.left.parent = root;
-    return smallest(root.left);
-  }
+  traverse(node.right, k, elements);
 };
 
 var tree = {
