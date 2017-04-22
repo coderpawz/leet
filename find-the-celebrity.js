@@ -23,12 +23,12 @@ var solution = function(knows) {
         return -1;
       }
       let cand = n - 1;
-      for (var ii = n - 2; ii >= 0; ii--) {
+      for (let ii = n - 2; ii >= 0; ii--) {
         if(knows(cand, ii)) {
           cand = ii;
         }
       }
-      for (var ii = n - 1; ii >= 0; ii--) {
+      for (let ii = n - 1; ii >= 0; ii--) {
         if (ii !== cand && (knows(cand, ii) || !knows(ii, cand))) {
           return -1;
         }
