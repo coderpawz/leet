@@ -10,33 +10,33 @@ const calculate = function(s) {
   for (var ii = 0; ii < s.length; ii++) {
     const ch = s.charAt(ii);
     switch (ch) {
-      case ' ':
-        continue;
-      case '+':
-        result += sign * number;
-        number = '';
-        sign = 1;
-        break;
-      case '-':
-        result += sign * number;
-        number = 0;
-        sign = -1;
-        break;
-      case ')':
-        result += sign * number;
-        result *= stack.pop();
-        result += stack.pop();
-        number = '';
-        break;
-      case '(':
-        stack.push(result);
-        stack.push(sign);
-        result = 0;
-        sign = 1;
-        break;
-      default:
-        number = number * 10 + parseInt(ch);
-        break;
+    case ' ':
+      continue;
+    case '+':
+      result += sign * number;
+      number = '';
+      sign = 1;
+      break;
+    case '-':
+      result += sign * number;
+      number = 0;
+      sign = -1;
+      break;
+    case ')':
+      result += sign * number;
+      result *= stack.pop();
+      result += stack.pop();
+      number = '';
+      break;
+    case '(':
+      stack.push(result);
+      stack.push(sign);
+      result = 0;
+      sign = 1;
+      break;
+    default:
+      number = number * 10 + parseInt(ch);
+      break;
     }
   }
   if (number) {

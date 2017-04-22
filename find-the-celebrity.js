@@ -18,23 +18,23 @@ var solution = function(knows) {
      * @param {integer} n Total people
      * @return {integer} The celebrity
      */
-    return function(n) {
-      if (n <= 1) {
+  return function(n) {
+    if (n <= 1) {
+      return -1;
+    }
+    let cand = n - 1;
+    for (let ii = n - 2; ii >= 0; ii--) {
+      if(knows(cand, ii)) {
+        cand = ii;
+      }
+    }
+    for (let ii = n - 1; ii >= 0; ii--) {
+      if (ii !== cand && (knows(cand, ii) || !knows(ii, cand))) {
         return -1;
       }
-      let cand = n - 1;
-      for (let ii = n - 2; ii >= 0; ii--) {
-        if(knows(cand, ii)) {
-          cand = ii;
-        }
-      }
-      for (let ii = n - 1; ii >= 0; ii--) {
-        if (ii !== cand && (knows(cand, ii) || !knows(ii, cand))) {
-          return -1;
-        }
-      }
-      return cand;
-    };
+    }
+    return cand;
+  };
 };
 
 let map;
@@ -84,7 +84,7 @@ map = {
     3: true,
     4: false
   }
-}
+};
 console.log(3, solution(f)(6));
 
 map = {
@@ -100,5 +100,5 @@ map = {
     0: false,
     1: true,
   }
-}
+};
 console.log(-1, solution(f)(3));

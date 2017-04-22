@@ -34,3 +34,11 @@ var binaryTreePaths = function(root) {
 
   return result;
 };
+
+function TreeNode(val) {
+  this.val = val;
+  this.left = this.right = null;
+}
+
+const a = new TreeNode(1);
+console.log(['a'], binaryTreePaths(a));

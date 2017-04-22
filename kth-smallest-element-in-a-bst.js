@@ -29,7 +29,7 @@ function traverse(node, k, elements) {
     return;
   }
   traverse(node.right, k, elements);
-};
+}
 
 var tree = {
   val: 10,

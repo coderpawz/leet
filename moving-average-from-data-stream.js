@@ -22,7 +22,7 @@ var MovingAverage = function(size) {
     this.tail = this.tail.prev;
     this.tail.next.prev = null;
     this.tail.next = null;
-  }
+  };
 };
 
 /**
