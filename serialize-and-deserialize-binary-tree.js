@@ -34,7 +34,6 @@ var serialize = function(root) {
  */
 var deserialize = function(data) {
   const q = JSON.parse(data).map(val => val !== null ? new TreeNode(val) : null);
-  // console.log(q)
   let child = 1;
   for (var ii = 0; ii < q.length; ii++) {
     if(q[ii] !== null) {
@@ -44,7 +43,6 @@ var deserialize = function(data) {
       q[ii].right = right < q.length ? q[right] : null;
     }
   }
-  // console.log(q)
   return q[0];
 };
 
